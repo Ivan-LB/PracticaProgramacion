@@ -28,6 +28,7 @@ class BackgroundImageJFrame extends JFrame implements ActionListener{
   String longitud;
   JButton btnsAbecedario[] = new JButton[27];
   JButton btnSalir;
+  Thread hilo;
   Boolean gano = new Boolean(false);
   ArrayList<String> puntajes = new ArrayList<String>();
   MiReproductor mr = new MiReproductor();
@@ -265,6 +266,16 @@ class BackgroundImageJFrame extends JFrame implements ActionListener{
     MenuJuego mj = new MenuJuego(numUser);
     this.dispose();
   }
+  public void iniciarHilo(){
+    hilo = new Thread(new Runnable(){
+      public void run(){
+        mr.inicializar();
+        mr.reproducirNota(60,1,750);
+        mr.finalizar();
+      }
+    });
+    hilo.start();
+  }
   public void botonPresionado(String letra){
     original = lblRespuesta.getText();
     LogicaP lp = new LogicaP(lblPalabra,lblRespuesta);
@@ -276,7 +287,7 @@ class BackgroundImageJFrame extends JFrame implements ActionListener{
       }
     }
     if(error.equals(true)){
-      notaError();
+      iniciarHilo();
       subImagen = imagen.getSubimage(indiceX,0,126,350);
       lblimagen = new ImageIcon(subImagen);
       monito.setIcon(lblimagen);
@@ -287,11 +298,6 @@ class BackgroundImageJFrame extends JFrame implements ActionListener{
         derrota();
       }
     }
-  }
-  public void notaError(){
-    mr.inicializar();
-    mr.reproducirNota(60,1,1000);
-    mr.finalizar();
   }
   public void ganar(){
     JOptionPane.showMessageDialog(null,"Gano, siguiente juego");
