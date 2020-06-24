@@ -24,6 +24,7 @@ class LogicaP extends JFrame{
     this.lblRespuesta = lblRespuesta;
   }
   public static String generar(ArrayList<String> categorias, JLabel lblPalabra, JLabel lblRespuesta){
+    Font font = new Font("arial",Font.BOLD,25);
     JLabel lblPalabraR = lblPalabra;
     JLabel lblRespuestaR = lblRespuesta;
     Random aleatorio = new Random(System.currentTimeMillis());
@@ -74,7 +75,8 @@ class LogicaP extends JFrame{
     s = arrayCategoriasActivas.get(rdmCategoria).get(rdmPalabra);
     lblPalabra.setText(s);
     for(int i=0; i<s.length(); i++) {
-      lblRespuesta.setText(lblRespuesta.getText()+" ");
+      lblRespuesta.setText(lblRespuesta.getText()+"_");
+      lblRespuesta.setFont(font);
     }
     original = lblRespuesta.getText();
     return s;

@@ -16,6 +16,7 @@ class BackgroundImageJFrame extends JFrame implements ActionListener{
   JLabel monito;
   JLabel lblPalabra;
   JLabel lblRespuesta;
+  JLabel lblLongitud;
   int indiceX = 126;
   int indice = 2;
   int errores = 0;
@@ -24,6 +25,7 @@ class BackgroundImageJFrame extends JFrame implements ActionListener{
   String s;
   String original;
   String spuntaje;
+  String longitud;
   JButton btnsAbecedario[] = new JButton[27];
   JButton btnSalir;
   Boolean gano = new Boolean(false);
@@ -220,15 +222,19 @@ class BackgroundImageJFrame extends JFrame implements ActionListener{
       background.add(horca);
 
       lblPalabra = new JLabel("");
-      lblPalabra.setBounds(350,0,250,75);
+      lblPalabra.setBounds(350,0,100,30);
       lblPalabra.setVisible(false);
       background.add(lblPalabra);
 
       lblRespuesta = new JLabel("");
-      lblRespuesta.setBounds(350,70,50,30);
+      lblRespuesta.setBounds(350,70,250,75);
       background.add(lblRespuesta);
 
       s = LogicaP.generar(categorias,lblPalabra,lblRespuesta);
+      longitud = "Longitud: "+String.valueOf(s.length());
+      lblLongitud = new JLabel(longitud);
+      lblLongitud.setBounds(350,0,200,75);
+      background.add(lblLongitud);
 
       try {
         imagen = ImageIO.read(new File("./Imagenes/SpritesFinal1.png"));
