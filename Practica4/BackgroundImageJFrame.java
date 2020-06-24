@@ -259,9 +259,9 @@ class BackgroundImageJFrame extends JFrame implements ActionListener{
     if(puntaje>Integer.parseInt(puntajes.get(numUser))) {
       puntajes.set(numUser,String.valueOf(puntaje));
       Archivo.reescribirArchivoPuntaje(puntajes);
-      JOptionPane.showMessageDialog(null,"Partida terminada, se ha actualizado tu puntuacion mas alta");
+      JOptionPane.showMessageDialog(null,"Partida terminada se ha actualizado tu puntuacion mas alta, la palabra fue: "+s);
     }else{
-      JOptionPane.showMessageDialog(null,"Partida terminada");
+      JOptionPane.showMessageDialog(null,"Partida terminada, la palabra fue: "+s);
     }
     MenuJuego mj = new MenuJuego(numUser);
     this.dispose();
